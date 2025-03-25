@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Link from 'next/link';
-import { ShoppingCartIcon } from '@heroicons/react/24/outline';
-import { useCart } from './store/store';
+import CartButton from './components/CartButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,30 +25,12 @@ export default function RootLayout({
               Каталог товаров
             </Link>
             <nav>
-              <Link
-                href="/cart"
-                className="flex items-center text-gray-700 hover:text-blue-600"
-              >
-                <ShoppingCartIcon className="h-6 w-6" />
-                <CartCounter />
-              </Link>
+              <CartButton />
             </nav>
           </div>
         </header>
         <main>{children}</main>
       </body>
     </html>
-  );
-}
-
-function CartCounter() {
-  const { totalItems } = useCart();
-  
-  if (totalItems === 0) return null;
-  
-  return (
-    <span className="ml-1 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-      {totalItems}
-    </span>
   );
 }

@@ -4,6 +4,7 @@
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { useCart } from '../store/store';
 import { Product } from '../store/store'; // Импортируем интерфейс из хранилища
+import Image from 'next/image'; 
 
 interface ProductCardProps {
   product: Product;
@@ -15,13 +16,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div className="p-4 h-48 flex items-center justify-center">
-        <img
+        <Image
           src={product.image}
           alt={product.title}
+          width={160}
+          height={160}
           className="max-h-full max-w-full object-contain"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = '/placeholder-product.png';
-          }}
         />
       </div>
       <div className="p-4">
